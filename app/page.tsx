@@ -6,12 +6,10 @@ import { Skills } from '@/components/Skills'
 import { Projects } from '@/components/Projects'
 import { Contact } from '@/components/Contact'
 import { Footer } from '@/components/Footer'
-import { Toaster } from 'react-hot-toast'
 
 export default function Home() {
   return (
     <>
-      <Toaster position="top-center" />
       <Header />
       <main className="overflow-hidden">
         <Hero />
