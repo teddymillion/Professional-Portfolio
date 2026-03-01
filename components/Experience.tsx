@@ -3,7 +3,14 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { PORTFOLIO } from '@/lib/constants'
-import { Briefcase, GraduationCap } from 'lucide-react'
+import { Briefcase } from 'lucide-react'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 
 export function Experience() {
   const { ref, inView } = useInView({
@@ -32,60 +39,48 @@ export function Experience() {
   }
 
   return (
-    <section id="experience" ref={ref} className="py-20 px-4 md:px-6 bg-muted/30">
+    <section id="experience" ref={ref} className="py-16 px-4 md:px-6">
       <motion.div
         className="max-w-4xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
       >
-        <motion.div variants={itemVariants} className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Experience & <span className="text-accent">Education</span>
-          </h2>
-          <div className="w-12 h-1 bg-accent rounded-full" />
-        </motion.div>
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Experience</h2>
 
-        <div className="space-y-6">
-          {PORTFOLIO.experience.map((exp, index) => {
-            const Icon = index === 0 ? Briefcase : GraduationCap
-            return (
-              <motion.div
-                key={`${exp.company}-${index}`}
-                variants={itemVariants}
-                className="p-6 rounded-lg border border-border/50 bg-background hover:border-accent/50 transition-colors"
-              >
-                <div className="flex gap-4 items-start">
-                  <div className="p-3 rounded-lg bg-accent/10 mt-1">
-                    <Icon className="w-6 h-6 text-accent" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
-                      <h3 className="text-xl font-bold">{exp.role}</h3>
-                      <span className="text-sm text-muted-foreground whitespace-nowrap">
-                        {exp.duration}
-                      </span>
+        <div className="space-y-8">
+          {PORTFOLIO.experience.map((exp, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              <Card className="overflow-hidden shadow-lg border-border/50 hover:border-accent/50 transition-colors">
+                <CardHeader>
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-lg bg-accent/10 mt-1">
+                      <Briefcase className="w-6 h-6 text-accent" />
                     </div>
-                    <p className="text-accent font-medium mb-3">{exp.company}</p>
-                    <p className="text-muted-foreground mb-4">{exp.description}</p>
-                    <ul className="space-y-2">
-                      {exp.highlights.map((highlight) => (
-                        <li
-                          key={highlight}
-                          className="text-sm text-muted-foreground flex items-start gap-3"
-                        >
-                          <span className="text-accent mt-1">•</span>
-                          <span>{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="flex-1">
+                      <CardTitle className="text-xl font-bold">{exp.role}</CardTitle>
+                      <p className="text-md text-accent font-medium">{exp.company}</p>
+                      <p className="text-sm text-muted-foreground mt-1">{exp.duration}</p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            )
-          })}
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>{exp.description}</CardDescription>
+                  <ul className="mt-4 space-y-2">
+                    {exp.highlights.map((highlight, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="text-accent mt-1">&#8226;</span>
+                        <span className="text-sm text-muted-foreground">{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
       </motion.div>
     </section>
   )
 }
+

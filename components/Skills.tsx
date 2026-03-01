@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { PORTFOLIO } from '@/lib/constants'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export function Skills() {
   const { ref, inView } = useInView({
@@ -31,75 +32,47 @@ export function Skills() {
   }
 
   return (
-    <section id="skills" ref={ref} className="py-20 px-4 md:px-6">
+    <section id="skills" ref={ref} className="py-16 px-4 md:px-6 bg-muted/30">
       <motion.div
         className="max-w-4xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
       >
-        <motion.div variants={itemVariants} className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Skills & <span className="text-accent">Certifications</span>
-          </h2>
-          <div className="w-12 h-1 bg-accent rounded-full" />
-        </motion.div>
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Skills</h2>
 
-        {/* Skills */}
-        <motion.div variants={itemVariants} className="mb-16">
-          <h3 className="text-2xl font-bold mb-6">Technical Skills</h3>
-          <div className="space-y-6">
-            {Object.entries(PORTFOLIO.skills).map(([category, skills]) => (
-              <motion.div
-                key={category}
-                variants={itemVariants}
-                className="space-y-3"
-              >
-                <h4 className="text-lg font-semibold text-accent">
-                  {category}
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {skills.map((skill) => (
-                    <motion.span
-                      key={skill}
-                      whileHover={{ scale: 1.05 }}
-                      className="px-4 py-2 rounded-full bg-accent/10 text-accent border border-accent/30 text-sm font-medium hover:bg-accent/20 transition-colors cursor-default"
-                    >
-                      {skill}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Certifications */}
         <motion.div variants={itemVariants}>
-          <h3 className="text-2xl font-bold mb-6">Certifications</h3>
-          <div className="grid md:grid-cols-2 gap-4">
-            {PORTFOLIO.certifications.map((cert) => (
-              <motion.div
-                key={cert.title}
-                variants={itemVariants}
-                className="p-4 rounded-lg bg-muted/50 border border-border/50 hover:border-accent/50 transition-colors"
-              >
-                <div className="flex gap-3 items-start">
-                  <span className="text-2xl">{cert.icon}</span>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-semibold text-sm md:text-base mb-1 text-balance">
-                      {cert.title}
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      {cert.issuer}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <Card className="shadow-lg border-border/50">
+            <CardContent className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {Object.entries(PORTFOLIO.skills).map(([category, skills]) => (
+                  <motion.div
+                    key={category}
+                    variants={itemVariants}
+                    className="space-y-4"
+                  >
+                    <h3 className="text-lg font-semibold text-accent border-b border-accent/30 pb-2">
+                      {category}
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {skills.map((skill) => (
+                        <motion.span
+                          key={skill}
+                          whileHover={{ scale: 1.05 }}
+                          className="px-3 py-1 rounded-full bg-accent/10 text-accent border border-accent/30 text-sm font-medium hover:bg-accent/20 transition-colors cursor-default"
+                        >
+                          {skill}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
       </motion.div>
     </section>
   )
 }
+

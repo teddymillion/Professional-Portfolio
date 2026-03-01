@@ -17,6 +17,7 @@ export function Header() {
 
   const navItems = [
     { label: 'About', href: '#about' },
+    { label: 'Education', href: '#education' },
     { label: 'Experience', href: '#experience' },
     { label: 'Skills', href: '#skills' },
     { label: 'Certifications', href: '#certifications' },
@@ -28,11 +29,16 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container flex h-16 max-w-6xl items-center justify-between mx-auto px-4 md:px-6">
-        <Link href="#" className="flex items-center gap-2 font-bold text-lg hover:text-accent transition-colors">
-          <span className="text-accent">{'<'}</span>
-          <span>TM</span>
-          <span className="text-accent">{'/>'}</span>
+      <nav className="container flex h-20 max-w-6xl items-center justify-between mx-auto px-4 md:px-6">
+        
+        {/* Logo / Name */}
+        <Link
+          href="#"
+          className="flex items-center gap-2 font-extrabold text-xl md:text-2xl tracking-tight hover:text-accent transition-colors"
+        >
+          <span>
+            Tewodros <span className="text-accent">Million</span>
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -41,10 +47,10 @@ export function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="text-sm font-medium hover:text-accent transition-colors relative group"
+              className="text-sm font-semibold hover:text-accent transition-colors relative group"
             >
               {item.label}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full" />
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
         </div>
@@ -86,7 +92,7 @@ export function Header() {
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-muted hover:text-accent transition-colors"
+                className="block px-3 py-2 rounded-lg text-sm font-semibold hover:bg-muted hover:text-accent transition-colors"
               >
                 {item.label}
               </Link>

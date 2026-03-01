@@ -9,9 +9,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Tewodros Million - Software Engineer',
-  description: 'Junior Software Engineer specializing in Odoo ERP customization, full-stack development, and business automation.',
-  generator: 'v0.app',
+  title: 'Tewodros Million | AI Systems Engineer',
+  description: 'AI Systems Engineer focused on building intelligent systems, scalable backend architectures, and AI-driven business automation solutions.',
   icons: {
     icon: [
       {
