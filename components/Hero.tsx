@@ -51,18 +51,26 @@ export function Hero() {
         initial="hidden"
         animate="visible"
       >
-        {/* Profile Image */}
-        <motion.div variants={itemVariants} className="mb-6 flex justify-center">
-          <div className="relative w-36 h-36 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-accent/20 shadow-lg">
-            <Image
-              src="/tewodros-profile.jpg"
-              alt="Tewodros Million"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        </motion.div>
+       {/* Profile Image */}
+<motion.div variants={itemVariants} className="mb-6 flex justify-center">
+  <motion.div
+    className="relative w-36 h-36 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-accent/20 shadow-lg"
+    whileHover={{
+      borderRadius: '1rem',  // smooth rounded rectangle
+      width: '22rem',         // slightly bigger
+      height: '28rem',        // rectangular shape
+      transition: { type: 'spring', stiffness: 160, damping: 20 },
+    }}
+  >
+    <Image
+      src="/tewodros-profile.jpg"
+      alt="Tewodros Million"
+      fill
+      className="object-cover object-center"
+      priority
+    />
+  </motion.div>
+</motion.div>
 
         {/* Name */}
         <motion.h1
