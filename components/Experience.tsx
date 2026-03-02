@@ -47,7 +47,7 @@ export function Experience() {
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Experience</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-blue-900 hover:bg-white-500/20 transition-colors hover:text-blue-500">Experience</h2>
 
         <div className="space-y-8">
           {PORTFOLIO.experience.map((exp, index) => (

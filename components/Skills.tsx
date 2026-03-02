@@ -39,7 +39,7 @@ export function Skills() {
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Skills</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-blue-900 hover:bg-white-500/20 transition-colors hover:text-blue-500">Skills</h2>
 
         <motion.div variants={itemVariants}>
           <Card className="shadow-lg border-border/50">

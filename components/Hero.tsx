@@ -53,7 +53,7 @@ export function Hero() {
       >
         {/* Profile Image */}
         <motion.div variants={itemVariants} className="mb-6 flex justify-center">
-          <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-accent/20 shadow-lg">
+          <div className="relative w-36 h-36 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-accent/20 shadow-lg">
             <Image
               src="/tewodros-profile.jpg"
               alt="Tewodros Million"

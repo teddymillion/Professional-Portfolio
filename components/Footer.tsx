@@ -19,7 +19,7 @@ export function Footer() {
               <span className="text-accent">{'/>'}</span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Junior Software Engineer specializing in Odoo ERP and full-stack development.
+              Junior AI Systems Engineer specializing in Odoo ERP and Intelligent Automation full-stack development.
             </p>
           </div>
 

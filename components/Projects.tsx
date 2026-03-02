@@ -50,7 +50,7 @@ export function Projects() {
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Projects</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-blue-900 hover:bg-white-500/20 transition-colors hover:text-blue-500">Projects</h2>
 
         <div className="grid md:grid-cols-1 gap-8">
           {PORTFOLIO.projects.map((project, index) => (

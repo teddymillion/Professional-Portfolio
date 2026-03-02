@@ -11,7 +11,7 @@ export const PORTFOLIO = {
 
   experience: [
     {
-      role: 'AI Systems Engineer',
+      role: 'Junior AI Systems Engineer',
       company: 'Alta Computec PLC',
       duration: 'Present (less than 1 year)',
       description:

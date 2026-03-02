@@ -27,6 +27,7 @@ export function About() {
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
       >
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-blue-900 hover:bg-white-500/20 transition-colors hover:text-blue-500">About Me</h2>
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
           {PORTFOLIO.personal.title}
         </h1>
