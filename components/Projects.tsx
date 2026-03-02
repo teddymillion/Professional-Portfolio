@@ -5,6 +5,7 @@ import { useInView } from 'react-intersection-observer'
 import { PORTFOLIO } from '@/lib/constants'
 import { Github, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Card,
   CardContent,
@@ -60,10 +61,27 @@ export function Projects() {
             >
               <Card className="h-full overflow-hidden shadow-lg border-border/50 hover:border-accent/50 transition-colors flex flex-col">
                 <CardHeader>
-                  <CardTitle className="text-xl font-bold group-hover:text-accent transition-colors">
-                    {project.title}
-                  </CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
+                  <div className="flex items-start gap-4">
+                    {project.image && (
+                      <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+
+                    <div>
+                      <CardTitle className="text-xl font-bold">
+                        {project.title}
+                      </CardTitle>
+                      <CardDescription className="mt-1">
+                        {project.description}
+                      </CardDescription>
+                    </div>
+                  </div>
                 </CardHeader>
                 <CardContent className="flex-grow">
                   <ul className="mb-4 space-y-2">

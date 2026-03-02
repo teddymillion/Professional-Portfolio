@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { PORTFOLIO } from '@/lib/constants'
 import { Briefcase } from 'lucide-react'
+import Image from 'next/image'
 import {
   Card,
   CardContent,
@@ -54,9 +55,15 @@ export function Experience() {
               <Card className="overflow-hidden shadow-lg border-border/50 hover:border-accent/50 transition-colors">
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-accent/10 mt-1">
-                      <Briefcase className="w-6 h-6 text-accent" />
+                    <div className="relative w-12 h-12 rounded-lg overflow-hidden mt-1 shrink-0">
+                      <Image
+                        src="/projects/alta.jpg"
+                        alt="Alta Computec Logo"
+                        fill
+                        className="object-contain"
+                      />
                     </div>
+
                     <div className="flex-1">
                       <CardTitle className="text-xl font-bold">{exp.role}</CardTitle>
                       <p className="text-md text-accent font-medium">{exp.company}</p>

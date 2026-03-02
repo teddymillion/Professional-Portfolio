@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { color, motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { PORTFOLIO } from '@/lib/constants'
 import {
@@ -56,7 +56,7 @@ export function Certifications() {
               variants={itemVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <Card className="h-full overflow-hidden shadow-lg border-border/50 hover:border-accent/50 transition-colors flex flex-col">
+              <Card className="h-full overflow-hidden shadow-lg border-blue-500 bg-blue-500/10 hover:bg-blue-500/20 transition-colors flex flex-col">
                 <CardHeader className="p-0">
                   <div className="relative aspect-video">
                     <Image
