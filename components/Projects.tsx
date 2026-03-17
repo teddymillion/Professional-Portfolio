@@ -101,25 +101,30 @@ export function Projects() {
                   </div>
                 </CardContent>
                 <CardFooter className="flex gap-4">
-                  <Link
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
-                  >
-                    <Github className="w-4 h-4" />
-                    View Code
-                  </Link>
-                  <Link
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    Live Demo
-                  </Link>
-                </CardFooter>
+  {project.link && (
+    <Link
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
+    >
+      <Github className="w-4 h-4" />
+      View Code
+    </Link>
+  )}
+
+  {project.demo && (
+    <Link
+      href={project.demo}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
+    >
+      <ExternalLink className="w-4 h-4" />
+      Live Demo
+    </Link>
+  )}
+</CardFooter>
               </Card>
             </motion.div>
           ))}

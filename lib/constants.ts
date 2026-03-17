@@ -80,23 +80,27 @@ export const PORTFOLIO = {
     },
   ],
   education: [
-    {
-      degree: "Bachelor's in Software Engineering",
-      institution: 'Addis Ababa University',
-      duration: '2024',
-      logoUrl: '/Addis-Ababa-University logo.png',
-      description:
-        'Completed a comprehensive software engineering curriculum with practical experience in full-stack development, backend systems and AI foundations.',
-    },
-    {
-      degree: 'BA in Management',
-      institution: 'Haramaya University',
-      duration: '2025',
-      logoUrl: '/Haramaya logo.png',
-      description: 'Focused on organizational leadership, strategic planning and process optimization to achieve business goals efficiently.',
-    },
-  ],
-
+  {
+    degree: "Bachelor's in Software Engineering",
+    institution: 'Addis Ababa University',
+    duration: '2024',
+    logoUrl: '/Addis-Ababa-University logo.png',
+    cgpa: '3.92/4.00',
+    neScore: '90%',
+    description:
+      'Completed a comprehensive software engineering curriculum with practical experience in full-stack development, backend systems, and AI foundations.',
+  },
+  {
+    degree: 'BA in Management',
+    institution: 'Haramaya University',
+    duration: '2025',
+    logoUrl: '/Haramaya logo.png',
+    cgpa: '3.25/4.00',
+    neScore: '63%',
+    description:
+      'Focused on organizational leadership, strategic planning, and process optimization to achieve business goals efficiently.',
+  },
+],
   skills: {
     'Programming Languages': ['Python', 'JavaScript', 'SQL', 'HTML', 'CSS'],
     'AI & ML Tools': ['OpenAI API', 'Python AI Libraries', 'OCI AI Services', 'Generative AI Foundations'],
@@ -107,6 +111,21 @@ export const PORTFOLIO = {
   },
 
   projects: [
+  {
+    title: 'AI Text & Image Tagging System',
+    description:
+      'An AI-powered web application that automatically generates relevant tags from text and images using Google Gemini. Designed to help organize, categorize, and analyze digital content efficiently.',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Google Gemini API'],
+    link: 'https://github.com/teddymillion/ai-text-image-tagger',
+    demo: "https://ai-text-image-tagger.vercel.app/",
+    image: '/projects/ai-tagger.jpg',
+    highlights: [
+      'AI-powered tag generation from text and images',
+      'Integration with Google Gemini generative AI',
+      'Modern responsive UI built with Next.js and Tailwind CSS',
+      'Real-time tag generation and copy functionality',
+      ],
+    },
   {
       title: 'Smart Department-Based Project Access Module',
       description:
@@ -119,7 +138,7 @@ export const PORTFOLIO = {
         'Automated workflow integration',
         'Department-based restrictions',
       ],
-},
+  },
     {
       title: 'TaskFlow – Project & Task Management Web App',
       description:
