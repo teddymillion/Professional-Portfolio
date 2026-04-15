@@ -1,31 +1,31 @@
 import { Header } from '@/components/Header'
+import { Hero } from '@/components/Hero'
 import { About } from '@/components/About'
-import { Education } from '@/components/Education'
+import { Projects } from '@/components/Projects'
 import { Experience } from '@/components/Experience'
+import { Education } from '@/components/Education'
 import { Skills } from '@/components/Skills'
 import { Certifications } from '@/components/Certifications'
-import { Projects } from '@/components/Projects'
-import { Footer } from '@/components/Footer'
+import { Vision } from '@/components/Vision'
 import { Contact } from '@/components/Contact'
-import { Hero } from '@/components/Hero'
+import { Footer } from '@/components/Footer'
 
 export default function Home() {
   return (
     <>
       <Header />
       <main className="overflow-x-hidden">
-        
-        <Hero/>
+        <Hero />
         <About />
-        <Education />
+        <Projects />
         <Experience />
         <Skills />
+        <Education />
         <Certifications />
-        <Projects />
+        <Vision />
         <Contact />
       </main>
       <Footer />
     </>
   )
 }
-

@@ -1,47 +1,45 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'react-hot-toast'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata: Metadata = {
-  title: 'Tewodros Million | AI Systems Engineer',
-  description: 'AI Systems Engineer focused on building intelligent systems, scalable backend architectures, and AI-driven business automation solutions.',
+  title: 'Tewodros Million — Software Engineer & Builder',
+  description: 'Building intelligent systems, scalable products, and AI-driven solutions. Software Engineer, AI Systems Builder, and Startup Founder in progress.',
+  keywords: ['Software Engineer', 'AI Systems', 'Full Stack Developer', 'Startup Founder', 'Ethiopia', 'Odoo ERP', 'Next.js'],
+  openGraph: {
+    title: 'Tewodros Million — Software Engineer & Builder',
+    description: 'Building intelligent systems, scalable products, and AI-driven solutions.',
+    type: 'website',
+  },
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/favicon.ico',
-        type: 'image/x-icon',
-      },
-    ],
+    icon: '/favicon.ico',
     apple: '/apple-icon.png',
   },
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="font-sans antialiased bg-background text-foreground">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+    <html lang="en" suppressHydrationWarning className="dark">
+      <body className={`${inter.variable} font-sans antialiased bg-[#080810] text-foreground`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
           {children}
           <Analytics />
-          <Toaster position="bottom-right" />
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              style: {
+                background: 'rgba(255,255,255,0.05)',
+                backdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                color: '#fff',
+              },
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>

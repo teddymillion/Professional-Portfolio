@@ -1,98 +1,88 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useTheme } from 'next-themes'
 import Link from 'next/link'
-import { Moon, Sun, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
+const navItems = [
+  { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Certifications', href: '#certifications' },
+  { label: 'Vision', href: '#vision' },
+  { label: 'Contact', href: '#contact' },
+]
+
 export function Header() {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
+    const handler = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handler)
+    return () => window.removeEventListener('scroll', handler)
   }, [])
 
-  const navItems = [
-    { label: 'About', href: '#about' },
-    { label: 'Education', href: '#education' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Certifications', href: '#certifications' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
-  ]
-
-  if (!mounted) return null
-
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container flex h-20 max-w-6xl items-center justify-between mx-auto px-4 md:px-6">
-        
-        {/* Logo / Name */}
+    <header
+      className={cn(
+        'fixed top-0 z-50 w-full transition-all duration-500',
+        scrolled
+          ? 'glass border-b border-white/5 py-3'
+          : 'bg-transparent py-5'
+      )}
+    >
+      <nav className="max-w-6xl mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link
           href="#"
-          className="flex items-center gap-2 font-extrabold text-xl md:text-2xl tracking-tight hover:text-accent transition-colors"
+          className="font-bold text-lg tracking-tight text-white hover:text-violet-400 transition-colors"
         >
-          <span>
-            Tewodros <span className="text-accent">Million</span>
-          </span>
+          TM<span className="text-violet-500">.</span>
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="text-sm font-semibold hover:text-accent transition-colors relative group"
+              className="text-sm text-zinc-400 hover:text-white transition-colors relative group"
             >
               {item.label}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-violet-500 transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
         </div>
 
-        {/* Theme Toggle & Mobile Menu Button */}
         <div className="flex items-center gap-3">
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-2 hover:bg-muted rounded-lg transition-colors"
-            aria-label="Toggle theme"
+          <Link
+            href="#contact"
+            className="hidden md:inline-flex items-center px-4 py-2 rounded-lg bg-violet-600/20 border border-violet-500/30 text-violet-300 text-sm font-medium hover:bg-violet-600/30 transition-all duration-300"
           >
-            {theme === 'dark' ? (
-              <Sun className="w-5 h-5" />
-            ) : (
-              <Moon className="w-5 h-5" />
-            )}
-          </button>
+            Let's Talk
+          </Link>
 
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden p-2 rounded-lg glass text-zinc-400 hover:text-white transition-colors"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
+            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur">
-          <div className="container max-w-6xl mx-auto px-4 py-4 space-y-3">
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="md:hidden glass-strong border-t border-white/5">
+          <div className="max-w-6xl mx-auto px-4 py-4 space-y-1">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="block px-3 py-2 rounded-lg text-sm font-semibold hover:bg-muted hover:text-accent transition-colors"
+                onClick={() => setMenuOpen(false)}
+                className="block px-4 py-3 rounded-lg text-sm text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
               >
                 {item.label}
               </Link>

@@ -3,91 +3,88 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { PORTFOLIO } from '@/lib/constants'
-import { Briefcase } from 'lucide-react'
+import { CheckCircle2 } from 'lucide-react'
 import Image from 'next/image'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 },
+  }),
+}
 
 export function Experience() {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
-  }
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
-    <section id="experience" ref={ref} className="py-16 px-4 md:px-6">
-      <motion.div
-        className="max-w-4xl mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-      >
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-blue-900 hover:bg-white-500/20 transition-colors hover:text-blue-500">Experience</h2>
+    <section id="experience" ref={ref} className="section-padding relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none" />
 
-        <div className="space-y-8">
-          {PORTFOLIO.experience.map((exp, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Card className="overflow-hidden shadow-lg border-border/50 hover:border-accent/50 transition-colors">
-                <CardHeader>
-                  <div className="flex items-start gap-4">
-                    <div className="relative w-12 h-12 rounded-lg overflow-hidden mt-1 shrink-0">
-                      <Image
-                        src="/projects/alta.jpg"
-                        alt="Alta Computec Logo"
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          custom={0}
+          variants={fadeUp}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="flex items-center gap-3 mb-4"
+        >
+          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-violet-400">Experience</span>
+          <div className="h-px flex-1 max-w-[60px] bg-violet-500/30" />
+        </motion.div>
 
-                    <div className="flex-1">
-                      <CardTitle className="text-xl font-bold">{exp.role}</CardTitle>
-                      <p className="text-md text-accent font-medium">{exp.company}</p>
-                      <p className="text-sm text-muted-foreground mt-1">{exp.duration}</p>
-                    </div>
+        <motion.h2
+          custom={1}
+          variants={fadeUp}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="text-3xl md:text-4xl font-bold tracking-tight mb-8"
+        >
+          Where I've <span className="gradient-text">built</span>
+        </motion.h2>
+
+        <div className="space-y-5">
+          {PORTFOLIO.experience.map((exp, i) => (
+            <motion.div
+              key={exp.company}
+              custom={i + 2}
+              variants={fadeUp}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              className="glass rounded-xl p-6 hover:border-white/10 transition-all duration-300"
+            >
+              <div className="flex items-start gap-4 mb-4">
+                <div className="relative w-10 h-10 rounded-xl overflow-hidden ring-1 ring-white/10 shrink-0 bg-violet-600/15 flex items-center justify-center">
+                  {exp.image ? (
+                    <Image src={exp.image} alt={exp.company} fill className="object-cover" />
+                  ) : (
+                    <span className="text-violet-400 font-bold text-sm">{exp.company.charAt(0)}</span>
+                  )}
+                </div>
+                <div className="flex-1">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h3 className="text-xl font-bold text-white">{exp.role}</h3>
+                    <span className="text-xs text-zinc-500 glass px-3 py-1 rounded-full">{exp.duration}</span>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{exp.description}</CardDescription>
-                  <ul className="mt-4 space-y-2">
-                    {exp.highlights.map((highlight, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <span className="text-accent mt-1">&#8226;</span>
-                        <span className="text-sm text-muted-foreground">{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+                  <p className="text-violet-400 font-medium mt-0.5">{exp.company}</p>
+                </div>
+              </div>
+
+              <p className="text-zinc-400 mb-6 leading-relaxed">{exp.description}</p>
+
+              <div className="grid sm:grid-cols-2 gap-3">
+                {exp.highlights.map((h, j) => (
+                  <div key={j} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span className="text-sm text-zinc-400">{h}</span>
+                  </div>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }
-

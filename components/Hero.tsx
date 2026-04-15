@@ -1,168 +1,280 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import {
-  ArrowRight,
-  Github,
-  Linkedin,
-  Mail,
-  Brain,
-  Code2,
-  Database,
-  Cpu,
-} from 'lucide-react'
+import { ArrowRight, Github, Linkedin, Mail, MapPin } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { PORTFOLIO } from '@/lib/constants'
 
+const socialIcons: Record<string, React.ElementType> = {
+  github: Github,
+  linkedin: Linkedin,
+  mail: Mail,
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 },
+  }),
+}
+
+function ParticleCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    let animId: number
+    const particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = []
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+    }
+    resize()
+    window.addEventListener('resize', resize)
+
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.4 + 0.1,
+      })
+    }
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      particles.forEach((p) => {
+        p.x += p.vx
+        p.y += p.vy
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1
+
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(139, 92, 246, ${p.opacity})`
+        ctx.fill()
+      })
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x
+          const dy = particles[i].y - particles[j].y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+          if (dist < 100) {
+            ctx.beginPath()
+            ctx.moveTo(particles[i].x, particles[i].y)
+            ctx.lineTo(particles[j].x, particles[j].y)
+            ctx.strokeStyle = `rgba(139, 92, 246, ${0.08 * (1 - dist / 100)})`
+            ctx.lineWidth = 0.5
+            ctx.stroke()
+          }
+        }
+      }
+
+      animId = requestAnimationFrame(draw)
+    }
+    draw()
+
+    return () => {
+      cancelAnimationFrame(animId)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
+
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
+}
+
 export function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: 'easeOut' },
-    },
-  }
-
-  const skills = [
-    { name: 'AI & Machine Learning', icon: Brain },
-    { name: 'Full Stack Development', icon: Code2 },
-    { name: 'ERP & Backend Systems', icon: Database },
-    { name: 'AI-Driven Automation', icon: Cpu },
-  ]
-
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 md:px-6 py-20">
-      <motion.div
-        className="max-w-4xl w-full text-center"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-       {/* Profile Image */}
-<motion.div variants={itemVariants} className="mb-6 flex justify-center">
-  <motion.div
-    className="relative w-36 h-36 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-accent/20 shadow-lg"
-    whileHover={{
-      borderRadius: '1rem',  // smooth rounded rectangle
-      width: '22rem',         // slightly bigger
-      height: '28rem',        // rectangular shape
-      transition: { type: 'spring', stiffness: 160, damping: 20 },
-    }}
-  >
-    <Image
-      src="/tewodros-profile.jpg"
-      alt="Tewodros Million"
-      fill
-      className="object-cover object-center"
-      priority
-    />
-  </motion.div>
-</motion.div>
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      <ParticleCanvas />
 
-        {/* Name */}
-        <motion.h1
-          variants={itemVariants}
-          className="text-4xl md:text-6xl font-bold mb-4"
-        >
-          Hi, I'm <span className="text-accent">Tewodros Million</span>
-        </motion.h1>
+      {/* Ambient orbs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[-15%] left-[-5%] w-[500px] h-[500px] rounded-full bg-violet-700/8 blur-[130px]" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[450px] h-[450px] rounded-full bg-blue-700/8 blur-[130px]" />
+      </div>
 
-        {/* Title */}
-        <motion.p
-          variants={itemVariants}
-          className="text-xl md:text-2xl font-semibold text-accent mb-4"
-        >
-          {PORTFOLIO.personal.title}
-        </motion.p>
+      {/* Grid */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px',
+        }}
+      />
 
-        {/* Tagline */}
-        <motion.p
-          variants={itemVariants}
-          className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto"
-        >
-          {PORTFOLIO.personal.tagline}
-        </motion.p>
+      <div className="relative z-10 max-w-6xl w-full mx-auto px-4 md:px-8 py-24">
+        <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-center">
 
-        {/* Skills with Icons */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-wrap justify-center gap-4 mb-10"
-        >
-          {skills.map((skill) => {
-            const Icon = skill.icon
-            return (
-              <div
-                key={skill.name}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium hover:bg-accent/20 transition-colors"
-              >
-                <Icon className="w-4 h-4" />
-                {skill.name}
-              </div>
-            )
-          })}
-        </motion.div>
+          {/* LEFT */}
+          <div>
+            <motion.div
+              custom={0} variants={fadeUp} initial="hidden" animate="visible"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-zinc-400 mb-6"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              Available for collaboration
+              <span className="text-zinc-600">·</span>
+              <MapPin className="w-3 h-3" />
+              {PORTFOLIO.personal.location}
+            </motion.div>
 
-        {/* Buttons */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-        >
-          <Link
-            href="#projects"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent/90 transition-colors group"
-          >
-            View My Work
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
+            <motion.p
+              custom={1} variants={fadeUp} initial="hidden" animate="visible"
+              className="text-sm font-semibold tracking-[0.15em] uppercase text-violet-400 mb-3"
+            >
+              {PORTFOLIO.personal.name}
+            </motion.p>
 
-          <Link
-            href="#contact"
-            className="inline-flex items-center gap-2 px-8 py-3 border border-border bg-background hover:bg-muted rounded-lg font-medium transition-colors"
-          >
-            Get in Touch
-          </Link>
-        </motion.div>
+            <motion.h1
+              custom={2} variants={fadeUp} initial="hidden" animate="visible"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-5"
+            >
+              <span className="gradient-text">{PORTFOLIO.personal.heroHeadline}</span>
+            </motion.h1>
 
-        {/* Social Icons */}
-        <motion.div
-          variants={itemVariants}
-          className="flex gap-4 justify-center"
-        >
-          {PORTFOLIO.social.map((social) => {
-            const Icon =
-              social.icon === 'github'
-                ? Github
-                : social.icon === 'linkedin'
-                ? Linkedin
-                : Mail
+            <motion.p
+              custom={3} variants={fadeUp} initial="hidden" animate="visible"
+              className="text-base md:text-lg text-zinc-400 mb-3 font-medium"
+            >
+              {PORTFOLIO.personal.heroSubheadline}
+            </motion.p>
 
-            return (
+            <motion.p
+              custom={4} variants={fadeUp} initial="hidden" animate="visible"
+              className="text-sm md:text-base text-zinc-500 mb-10 max-w-xl leading-relaxed"
+            >
+              {PORTFOLIO.personal.tagline}
+            </motion.p>
+
+            <motion.div
+              custom={5} variants={fadeUp} initial="hidden" animate="visible"
+              className="flex flex-wrap gap-3 mb-10"
+            >
               <Link
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-lg bg-muted hover:bg-muted/80 text-foreground hover:text-accent transition-colors"
-                aria-label={social.name}
+                href="#projects"
+                className="group inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_24px_rgba(139,92,246,0.45)] hover:-translate-y-px"
               >
-                <Icon className="w-5 h-5" />
+                View Projects
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </Link>
-            )
-          })}
-        </motion.div>
+              <Link
+                href="#contact"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg glass text-zinc-300 text-sm font-semibold hover:bg-white/6 hover:-translate-y-px transition-all duration-300"
+              >
+                Work With Me
+              </Link>
+            </motion.div>
+
+            <motion.div
+              custom={6} variants={fadeUp} initial="hidden" animate="visible"
+              className="flex gap-2"
+            >
+              {PORTFOLIO.social.map((s) => {
+                const Icon = socialIcons[s.icon] ?? Mail
+                return (
+                  <Link
+                    key={s.name}
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.name}
+                    className="p-2.5 rounded-lg glass text-zinc-500 hover:text-violet-400 hover:border-violet-500/25 transition-all duration-300"
+                  >
+                    <Icon className="w-4 h-4" />
+                  </Link>
+                )
+              })}
+            </motion.div>
+          </div>
+
+          {/* RIGHT: Profile photo */}
+          <motion.div
+            custom={3} variants={fadeUp} initial="hidden" animate="visible"
+            className="hidden lg:flex items-center justify-center"
+          >
+            <div className="relative float">
+              {/* Glow halo */}
+              <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-violet-600/25 via-blue-600/15 to-violet-600/25 blur-2xl" />
+
+              {/* Animated border frame */}
+              <div className="relative animated-border rounded-2xl">
+                <div className="relative w-60 h-72 rounded-2xl overflow-hidden">
+                  <Image
+                    src="/tewodros-profile.jpg"
+                    alt="Tewodros Million"
+                    fill
+                    className="object-cover object-top"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080810]/50 via-transparent to-transparent" />
+                </div>
+              </div>
+
+              {/* Floating stat: CGPA */}
+              <motion.div
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1, duration: 0.5 }}
+                className="absolute -left-12 top-10 glass rounded-xl px-3 py-2 text-center shadow-lg"
+              >
+                <p className="text-base font-bold text-white">3.36</p>
+                <p className="text-[10px] text-zinc-500 mt-0.5">CGPA</p>
+              </motion.div>
+
+              {/* Floating stat: Projects */}
+              <motion.div
+                initial={{ opacity: 0, x: 16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.2, duration: 0.5 }}
+                className="absolute -right-12 bottom-14 glass rounded-xl px-3 py-2 text-center shadow-lg"
+              >
+                <p className="text-base font-bold gradient-text-purple">5+</p>
+                <p className="text-[10px] text-zinc-500 mt-0.5">Products</p>
+              </motion.div>
+
+              {/* Floating tag: stack */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.4, duration: 0.5 }}
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 glass rounded-xl px-4 py-1.5 whitespace-nowrap shadow-lg"
+              >
+                <p className="text-xs text-zinc-400 font-medium">
+                  <span className="text-violet-400">AI</span> · ERP · Full Stack
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+
+        </div>
+      </div>
+
+      {/* Scroll cue */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.8, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
+      >
+        <span className="text-[10px] text-zinc-700 tracking-[0.2em] uppercase">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+          className="w-px h-6 bg-gradient-to-b from-zinc-600 to-transparent"
+        />
       </motion.div>
     </section>
   )

@@ -1,81 +1,48 @@
 'use client'
 
 import Link from 'next/link'
-import { Github, Linkedin, Mail, Heart } from 'lucide-react'
+import { Github, Linkedin, Mail } from 'lucide-react'
 import { PORTFOLIO } from '@/lib/constants'
 
+const socialIcons: Record<string, React.ElementType> = {
+  github: Github,
+  linkedin: Linkedin,
+  mail: Mail,
+}
+
 export function Footer() {
-  const currentYear = new Date().getFullYear()
-
   return (
-    <footer className="border-t border-border/40 bg-background/50 backdrop-blur">
-      <div className="container max-w-6xl mx-auto px-4 md:px-6 py-12">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {/* Brand */}
-          <div>
-            <Link href="#" className="flex items-center gap-2 font-bold text-lg mb-4 hover:text-accent transition-colors">
-              <span className="text-accent">{'<'}</span>
-              <span>TM</span>
-              <span className="text-accent">{'/>'}</span>
-            </Link>
-            <p className="text-sm text-muted-foreground">
-              Junior AI Systems Engineer specializing in Odoo ERP and Intelligent Automation full-stack development.
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
-            <nav className="space-y-2">
-              {[
-                { label: 'About', href: '#about' },
-                { label: 'Experience', href: '#experience' },
-                { label: 'Projects', href: '#projects' },
-                { label: 'Contact', href: '#contact' },
-              ].map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="block text-sm text-muted-foreground hover:text-accent transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          {/* Social Links */}
-          <div>
-            <h3 className="font-semibold mb-4">Connect</h3>
-            <div className="flex gap-3">
-              {PORTFOLIO.social.map((social) => {
-                const Icon = social.icon === 'github' ? Github : social.icon === 'linkedin' ? Linkedin : Mail
-                return (
-                  <Link
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-muted hover:bg-accent/20 hover:text-accent transition-colors"
-                    aria-label={social.name}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
+    <footer className="border-t border-white/5 py-10 px-4 md:px-6">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex items-center gap-3">
+          <span className="font-bold text-white">
+            TM<span className="text-violet-500">.</span>
+          </span>
+          <span className="text-zinc-600 text-sm">
+            © {new Date().getFullYear()} Tewodros Million
+          </span>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-border/40" />
+        <p className="text-zinc-600 text-sm text-center">
+          Building systems that scale — from Addis Ababa to the world.
+        </p>
 
-        {/* Copyright */}
-        <div className="pt-8 text-center text-sm text-muted-foreground">
-          <p className="flex items-center justify-center gap-1 mb-2">
-            Made with <Heart className="w-4 h-4 text-accent fill-accent" /> by Tewodros Million
-          </p>
-          <p>© {currentYear} Tewodros Million. All rights reserved.</p>
+        <div className="flex gap-3">
+          {PORTFOLIO.social.map((s) => {
+            const Icon = socialIcons[s.icon] ?? Mail
+            return (
+              <Link
+                key={s.name}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.name}
+                className="p-2 rounded-lg text-zinc-600 hover:text-violet-400 transition-colors"
+              >
+                <Icon className="w-4 h-4" />
+              </Link>
+            )
+          })}
         </div>
       </div>
     </footer>
