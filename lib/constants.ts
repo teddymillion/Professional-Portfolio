@@ -62,7 +62,7 @@ export const PORTFOLIO = {
     {
       role: 'AI Systems Engineer',
       company: 'Alta Computec PLC',
-      duration: '2023 — Present · 2+ yrs',
+      duration: '2025 — Present · 1+ yrs',
       description:
         'Designing and shipping AI-powered backend systems and business automation solutions. Leading ERP customization initiatives and building intelligent workflows that reduce manual overhead by 60%+.',
       image: '/projects/alta.jpg',
@@ -76,7 +76,7 @@ export const PORTFOLIO = {
     {
       role: 'Behavioral Data — Architecture & Strategy',
       company: 'Revelo Matching Team · Self-Employed',
-      duration: '2023 — 2024 · 1 yr',
+      duration: '2025 — 2026 · 5 month',
       description:
         'Worked independently on behavioral data architecture and strategic content for Revelo\'s matching platform. Designed data-driven frameworks for talent-matching logic and authored technical PR content.',
       image: '',
@@ -104,7 +104,7 @@ export const PORTFOLIO = {
       id: 'ibm-cloud-intro',
       name: 'Introduction to Cloud Computing',
       issuer: 'IBM',
-      date: '2024',
+      date: '2026',
       credentialId: 'IBM-Cloud-Intro',
       pdfUrl: '/certificates/Introduction to Cloud Computing IBM Full Stack Certificate.pdf',
       thumbnailUrl: '/certificates/Introduction to Cloud Computing IBM Full Stack Coursera.png',
@@ -124,7 +124,7 @@ export const PORTFOLIO = {
       id: 'google-ux-design',
       name: 'Google UX Design Professional',
       issuer: 'Google',
-      date: '2024',
+      date: '2026',
       credentialId: 'Google-UX-Design',
       pdfUrl: '/certificates/Google UX Design Professional Certificate.pdf',
       thumbnailUrl: '/certificates/Google UX Design Professional Certificate.png',
