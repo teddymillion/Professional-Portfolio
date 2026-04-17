@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { PORTFOLIO } from '@/lib/constants'
-import { Github, ArrowUpRight, Zap, Lock, Brain, ChevronRight } from 'lucide-react'
+import { Github, ArrowUpRight, Zap, Lock, Brain, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ProjectPreview } from '@/components/ProjectPreview'
@@ -95,8 +95,27 @@ export function Projects() {
                 <div className="grid lg:grid-cols-[3fr_2fr]">
                   {/* Left: preview */}
                   <div className="border-r border-white/5">
-                    {project.demo ? (
-                      <ProjectPreview url={project.demo} title={project.title} />
+                    {(project as any).mediaType === 'video' ? (
+                      // Video cover — autoplay loop
+                      <div className="relative h-52 lg:h-full min-h-[220px] overflow-hidden group">
+                        <video
+                          src={project.image}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="w-full h-full object-cover"
+                        />
+                        {project.demo && (
+                          <Link href={project.demo} target="_blank" rel="noopener noreferrer"
+                            className="absolute bottom-3 right-3 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-sm text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                            <ExternalLink className="w-3 h-3" />
+                            Open Live App
+                          </Link>
+                        )}
+                      </div>
+                    ) : project.demo ? (
+                      <ProjectPreview url={project.demo} title={project.title} coverImage={project.image} />
                     ) : (
                       <div className="relative h-52 lg:h-full min-h-[220px] overflow-hidden group">
                         <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
