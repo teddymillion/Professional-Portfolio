@@ -37,12 +37,12 @@ export const PORTFOLIO = {
   },
 
   vision: {
-    headline: 'Building the infrastructure for Africa\'s digital future.',
-    description: 'The next decade will see Africa\'s tech ecosystem explode. I am positioning myself at the center of that transformation — building AI-native products, digitizing broken systems, and creating tools that empower the next generation of African builders.',
+    headline: "Building the infrastructure for Africa's digital future.",
+    description: "The next decade will see Africa's tech ecosystem explode. I am positioning myself at the center of that transformation — building AI-native products, digitizing broken systems, and creating tools that empower the next generation of African builders.",
     directions: [
       {
         title: 'Transport Digitization',
-        description: 'Modernizing Ethiopia\'s fragmented transport and logistics infrastructure with real-time tracking, AI routing, and digital payments.',
+        description: "Modernizing Ethiopia's fragmented transport and logistics infrastructure with real-time tracking, AI routing, and digital payments.",
         status: 'Exploring',
       },
       {
@@ -63,8 +63,7 @@ export const PORTFOLIO = {
       role: 'AI Systems Engineer',
       company: 'Alta Computec PLC',
       duration: '2025 — Present · 1+ yrs',
-      description:
-        'Designing and shipping AI-powered backend systems and business automation solutions. Leading ERP customization initiatives and building intelligent workflows that reduce manual overhead by 60%+.',
+      description: 'Designing and shipping AI-powered backend systems and business automation solutions. Leading ERP customization initiatives and building intelligent workflows that reduce manual overhead by 60%+.',
       image: '/projects/alta.jpg',
       highlights: [
         'Architected AI-powered automation pipelines reducing manual processes by 60%',
@@ -76,9 +75,8 @@ export const PORTFOLIO = {
     {
       role: 'Behavioral Data — Architecture & Strategy',
       company: 'Revelo Matching Team · Self-Employed',
-      duration: '2025 — 2026 · 5 month',
-      description:
-        'Worked independently on behavioral data architecture and strategic content for Revelo\'s matching platform. Designed data-driven frameworks for talent-matching logic and authored technical PR content.',
+      duration: '2025 — 2026 · 5 months',
+      description: "Worked independently on behavioral data architecture and strategic content for Revelo's matching platform. Designed data-driven frameworks for talent-matching logic and authored technical PR content.",
       image: '',
       highlights: [
         'Designed behavioral data architecture for talent-matching algorithms',
@@ -141,28 +139,28 @@ export const PORTFOLIO = {
       description: 'Covers HTML5, CSS3, Flexbox, CSS Grid, responsive design principles, and accessibility. Includes 5 certification projects demonstrating real-world layout and styling skills.',
     },
   ],
+
   education: [
-  {
-    degree: "Bachelor's in Software Engineering",
-    institution: 'Haramaya University',
-    duration: '2025',
-    logoUrl: '/Haramaya logo.png',
-    cgpa: '3.36/4.00',
-    neScore: '71%',
-    description:
-      'Completed a comprehensive software engineering curriculum with practical experience in full-stack development, backend systems, and AI foundations.',
-  },
-  {
-    degree: 'BA in Management',
-    institution: 'Haramaya University',
-    duration: '2026',
-    logoUrl: '/Haramaya logo.png',
-    cgpa: '3.25/4.00',
-    neScore: '63%',
-    description:
-      'Focused on organizational leadership, strategic planning, and process optimization to achieve business goals efficiently.',
-  },
-],
+    {
+      degree: "Bachelor's in Software Engineering",
+      institution: 'Haramaya University',
+      duration: '2025',
+      logoUrl: '/Haramaya logo.png',
+      cgpa: '3.36/4.00',
+      neScore: '71%',
+      description: 'Completed a comprehensive software engineering curriculum with practical experience in full-stack development, backend systems, and AI foundations.',
+    },
+    {
+      degree: 'BA in Management',
+      institution: 'Haramaya University',
+      duration: '2026',
+      logoUrl: '/Haramaya logo.png',
+      cgpa: '3.25/4.00',
+      neScore: '63%',
+      description: 'Focused on organizational leadership, strategic planning, and process optimization to achieve business goals efficiently.',
+    },
+  ],
+
   skills: {
     'Programming Languages': ['Python', 'JavaScript', 'SQL', 'MATLAB', 'HTML', 'CSS'],
     'AI & ML Tools': ['OpenAI API', 'OCI AI Services', 'Generative AI', 'Prompt Engineering'],
@@ -174,114 +172,122 @@ export const PORTFOLIO = {
   },
 
   projects: [
-  {
-    title: 'ስሙኒ ዋሌት — AI Money Management',
-    tagline: 'AI-powered personal finance for Ethiopia',
-    problem: 'Millions of Ethiopians have no intelligent tool to track, manage, or understand their personal finances. Existing apps are built for Western markets and ignore local context, currency, and spending patterns.',
-    solution: 'Built a full-featured AI-powered money management system tailored for Ethiopian users — with smart expense tracking, budget intelligence, and AI-driven financial insights in a clean, modern interface.',
-    description:
-      'An AI-powered personal finance and money management web application designed for Ethiopian users. Features intelligent expense tracking, budget management, and AI-generated financial insights.',
-    technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'AI Integration'],
-    link: 'https://github.com/teddymillion',
-    demo: 'https://ai-powered-money-management-system.vercel.app',
-    image: '/projects/ai-tagger.jpg',
-    impact: 'Live product — AI-native financial tool built for the Ethiopian market',
-    featured: true,
-    highlights: [
-      'AI-powered expense categorization and insights',
-      'Smart budget tracking and alerts',
-      'Personalized financial recommendations',
-      'Built for Ethiopian financial context and currency',
-    ],
-  },
-  {
-    title: 'AI Text & Image Tagging System',
-    tagline: 'Automated content intelligence at scale',
-    problem: 'Content teams waste hours manually tagging and categorizing digital assets. There was no fast, intelligent way to organize large volumes of text and images.',
-    solution: 'Built an AI-powered web app that automatically generates relevant, context-aware tags from any text or image using Google Gemini — reducing tagging time from hours to seconds.',
-    description:
-      'An AI-powered web application that automatically generates relevant tags from text and images using Google Gemini. Designed to help organize, categorize, and analyze digital content efficiently.',
-    technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Google Gemini API'],
-    link: 'https://github.com/teddymillion/ai-text-image-tagger',
-    demo: 'https://ai-text-image-tagger.vercel.app/',
-    image: '/projects/ai-tagger.jpg',
-    impact: 'Deployed and live — reduces content tagging time by 95%',
-    highlights: [
-      'AI-powered tag generation from text and images',
-      'Integration with Google Gemini generative AI',
-      'Modern responsive UI built with Next.js and Tailwind CSS',
-      'Real-time tag generation and copy functionality',
-    ],
-  },
-  {
-    title: 'Resume Analyzer — AI Feedback Engine',
-    tagline: 'AI-powered career intelligence tool',
-    problem: 'Job seekers receive generic, unhelpful feedback on their resumes. There was no fast, intelligent way to get actionable, personalized resume analysis.',
-    solution: 'Built an AI-powered resume analyzer using prompt engineering to extract structured insights and generate specific, actionable feedback for any resume.',
-    description:
-      'Web app that analyzes resumes and provides AI-generated feedback using prompt engineering principles.',
-    technologies: ['JavaScript', 'Node.js', 'OpenAI API', 'REST APIs'],
-    link: 'https://github.com/teddymillion',
-    demo: 'https://ai-resume-analyzer-bice-two.vercel.app/landing',
-    image: '/projects/resume analyzer.jpg',
-    impact: 'Live — delivers structured AI feedback in under 10 seconds',
-    highlights: [
-      'Advanced prompt engineering for structured output',
-      'Detailed section-by-section feedback generation',
-      'ATS compatibility scoring',
-    ],
-  },
-  {
-    title: 'Smart Department-Based Project Access',
-    tagline: 'Automated access control for enterprise ERP',
-    problem: 'Enterprise teams were manually managing project access permissions in Odoo ERP — a slow, error-prone process that created security gaps and workflow bottlenecks.',
-    solution: 'Built a custom Odoo module that automatically assigns project access based on department selection during CRM-to-Project conversion, eliminating manual intervention entirely.',
-    description:
-      'Custom Odoo module automating project access based on department selection during CRM-to-Project conversion.',
-    technologies: ['Python', 'Odoo ORM', 'PostgreSQL'],
-    link: 'https://github.com/teddymillion',
-    image: '/projects/smart project access.png',
-    impact: 'Enterprise deployment — eliminated manual access management, zero security incidents post-launch',
-    highlights: [
-      'Security-focused automated access control',
-      'Seamless CRM-to-Project workflow integration',
-      'Department-based permission restrictions',
-    ],
-  },
-  {
-    title: 'TaskFlow — Project & Task Management',
-    tagline: 'Full-stack productivity platform',
-    problem: 'Small teams needed a lightweight, fast task management system without the bloat of enterprise tools like Jira or Asana.',
-    solution: 'Built a full-stack task management platform with real-time updates, user authentication, and project organization — designed for speed and simplicity.',
-    description:
-      'A full-stack task management system with user authentication, project creation, and real-time task tracking.',
-    technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
-    link: 'https://github.com/teddymillion',
-    image: '/projects/task flow.jpg',
-    impact: 'Full-stack system with real-time collaboration and JWT authentication',
-    highlights: [
-      'JWT-based user authentication system',
-      'Real-time task updates and notifications',
-      'Project organization and team collaboration',
-    ],
-  },
+    {
+      title: 'Simuni Wallet — AI Money Management',
+      tagline: 'AI-powered personal finance for Ethiopia',
+      problem: 'Millions of Ethiopians have no intelligent tool to track, manage, or understand their personal finances. Existing apps are built for Western markets and ignore local context, currency, and spending patterns.',
+      solution: 'Built a full-featured AI-powered money management system tailored for Ethiopian users — with smart expense tracking, budget intelligence, and AI-driven financial insights in a clean, modern interface.',
+      description: 'An AI-powered personal finance and money management web application designed for Ethiopian users.',
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'AI Integration'],
+      link: 'https://github.com/teddymillion',
+      demo: 'https://ai-powered-money-management-system.vercel.app',
+      image: '/projects/ai-tagger.jpg',
+      impact: 'Live product — AI-native financial tool built for the Ethiopian market',
+      featured: true,
+      decisionLog: {
+        techChoice: 'Chose Next.js for SSR — financial data needs fast initial load, not SPA hydration lag.',
+        tradeoff: 'Used client-side AI calls over a backend pipeline to ship faster. Trade-off: slightly higher latency per request.',
+        future: 'Next step is adding offline support and ETB currency intelligence trained on local spending patterns.',
+      },
+      highlights: [
+        'AI-powered expense categorization and insights',
+        'Smart budget tracking and alerts',
+        'Personalized financial recommendations',
+        'Built for Ethiopian financial context and currency',
+      ],
+    },
+    {
+      title: 'AI Text & Image Tagging System',
+      tagline: 'Automated content intelligence at scale',
+      problem: 'Content teams waste hours manually tagging and categorizing digital assets. There was no fast, intelligent way to organize large volumes of text and images.',
+      solution: 'Built an AI-powered web app that automatically generates relevant, context-aware tags from any text or image using Google Gemini — reducing tagging time from hours to seconds.',
+      description: 'An AI-powered web application that automatically generates relevant tags from text and images using Google Gemini.',
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Google Gemini API'],
+      link: 'https://github.com/teddymillion/ai-text-image-tagger',
+      demo: 'https://ai-text-image-tagger.vercel.app/',
+      image: '/projects/ai-tagger.jpg',
+      impact: 'Deployed and live — reduces content tagging time by 95%',
+      decisionLog: {
+        techChoice: 'Chose Gemini over GPT-4V — better cost-per-token at scale and stronger multimodal performance for image tagging.',
+        tradeoff: 'No fine-tuning — used prompt engineering instead. Faster to iterate, easier to maintain.',
+        future: 'Plan to add batch processing and a tagging API for third-party integrations.',
+      },
+      highlights: [
+        'AI-powered tag generation from text and images',
+        'Integration with Google Gemini generative AI',
+        'Modern responsive UI built with Next.js and Tailwind CSS',
+        'Real-time tag generation and copy functionality',
+      ],
+    },
+    {
+      title: 'Resume Analyzer — AI Feedback Engine',
+      tagline: 'AI-powered career intelligence tool',
+      problem: 'Job seekers receive generic, unhelpful feedback on their resumes. There was no fast, intelligent way to get actionable, personalized resume analysis.',
+      solution: 'Built an AI-powered resume analyzer using prompt engineering to extract structured insights and generate specific, actionable feedback for any resume.',
+      description: 'Web app that analyzes resumes and provides AI-generated feedback using prompt engineering principles.',
+      technologies: ['JavaScript', 'Node.js', 'OpenAI API', 'REST APIs'],
+      link: 'https://github.com/teddymillion',
+      demo: 'https://ai-resume-analyzer-bice-two.vercel.app/landing',
+      image: '/projects/resume analyzer.jpg',
+      impact: 'Live — delivers structured AI feedback in under 10 seconds',
+      decisionLog: {
+        techChoice: 'Prompt engineering over fine-tuning — faster iteration cycle, zero training cost, easier to update.',
+        tradeoff: 'Output quality depends on prompt design. Invested heavily in structured output formatting.',
+        future: 'Add ATS score simulation and job-description matching.',
+      },
+      highlights: [
+        'Advanced prompt engineering for structured output',
+        'Detailed section-by-section feedback generation',
+        'ATS compatibility scoring',
+      ],
+    },
+    {
+      title: 'Smart Department-Based Project Access',
+      tagline: 'Automated access control for enterprise ERP',
+      problem: 'Enterprise teams were manually managing project access permissions in Odoo ERP — a slow, error-prone process that created security gaps and workflow bottlenecks.',
+      solution: 'Built a custom Odoo module that automatically assigns project access based on department selection during CRM-to-Project conversion, eliminating manual intervention entirely.',
+      description: 'Custom Odoo module automating project access based on department selection during CRM-to-Project conversion.',
+      technologies: ['Python', 'Odoo ORM', 'PostgreSQL'],
+      link: 'https://github.com/teddymillion',
+      image: '/projects/smart project access.png',
+      impact: 'Enterprise deployment — eliminated manual access management, zero security incidents post-launch',
+      decisionLog: {
+        techChoice: 'Python + Odoo ORM for deep ERP integration. PostgreSQL triggers for real-time access updates.',
+        tradeoff: 'Tightly coupled to Odoo version. Documented upgrade path for future Odoo migrations.',
+        future: 'Extend to role-based access with AI-suggested permission levels based on job title.',
+      },
+      highlights: [
+        'Security-focused automated access control',
+        'Seamless CRM-to-Project workflow integration',
+        'Department-based permission restrictions',
+      ],
+    },
+    {
+      title: 'TaskFlow — Project & Task Management',
+      tagline: 'Full-stack productivity platform',
+      problem: 'Small teams needed a lightweight, fast task management system without the bloat of enterprise tools like Jira or Asana.',
+      solution: 'Built a full-stack task management platform with real-time updates, user authentication, and project organization — designed for speed and simplicity.',
+      description: 'A full-stack task management system with user authentication, project creation, and real-time task tracking.',
+      technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
+      link: 'https://github.com/teddymillion',
+      image: '/projects/task flow.jpg',
+      impact: 'Full-stack system with real-time collaboration and JWT authentication',
+      decisionLog: {
+        techChoice: 'MongoDB over PostgreSQL — flexible schema for evolving task structures during early development.',
+        tradeoff: 'Sacrificed relational integrity for speed of iteration. Would use PostgreSQL in a production version.',
+        future: 'Add real-time WebSocket updates and team workspace features.',
+      },
+      highlights: [
+        'JWT-based user authentication system',
+        'Real-time task updates and notifications',
+        'Project organization and team collaboration',
+      ],
+    },
   ],
 
   social: [
-    {
-      name: 'GitHub',
-      url: 'https://github.com/teddymillion',
-      icon: 'github',
-    },
-    {
-      name: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/tewodros-million-a911303a3/',
-      icon: 'linkedin',
-    },
-    {
-      name: 'Email',
-      url: 'mailto:tedrosmilion19@gmail.com',
-      icon: 'mail',
-    },
+    { name: 'GitHub', url: 'https://github.com/teddymillion', icon: 'github' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/tewodros-million-a911303a3/', icon: 'linkedin' },
+    { name: 'Email', url: 'mailto:tedrosmilion19@gmail.com', icon: 'mail' },
   ],
 }
