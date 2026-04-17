@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { ThinkingModeToggle } from '@/components/premium/ThinkingModeToggle'
 
 const navItems = [
   { label: 'About', href: '#about' },
@@ -56,6 +57,7 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-3">
+          <ThinkingModeToggle />
           <Link
             href="#contact"
             className="hidden md:inline-flex items-center px-4 py-2 rounded-lg bg-violet-600/20 border border-violet-500/30 text-violet-300 text-sm font-medium hover:bg-violet-600/30 transition-all duration-300"

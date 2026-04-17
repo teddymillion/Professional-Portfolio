@@ -6,6 +6,8 @@ import { ArrowRight, Github, Linkedin, Mail, MapPin } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { PORTFOLIO } from '@/lib/constants'
+import { StatusWidget } from '@/components/premium/StatusWidget'
+import { ChallengeCTA } from '@/components/premium/ChallengeCTA'
 
 const socialIcons: Record<string, React.ElementType> = {
   github: Github,
@@ -59,13 +61,11 @@ function ParticleCanvas() {
         p.y += p.vy
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1
-
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
         ctx.fillStyle = `rgba(139, 92, 246, ${p.opacity})`
         ctx.fill()
       })
-
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x
@@ -81,7 +81,6 @@ function ParticleCanvas() {
           }
         }
       }
-
       animId = requestAnimationFrame(draw)
     }
     draw()
@@ -96,6 +95,18 @@ function ParticleCanvas() {
 }
 
 export function Hero() {
+  // Easter egg: console message
+  useEffect(() => {
+    console.log(
+      '%c👋 Hey, you found the console.',
+      'color: #a78bfa; font-size: 14px; font-weight: bold;'
+    )
+    console.log(
+      '%cIf you\'re reading this, you should probably work with Teddy.\n→ tedrosmilion19@gmail.com',
+      'color: #6d28d9; font-size: 12px;'
+    )
+  }, [])
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       <ParticleCanvas />
@@ -154,14 +165,14 @@ export function Hero() {
 
             <motion.p
               custom={4} variants={fadeUp} initial="hidden" animate="visible"
-              className="text-sm md:text-base text-zinc-500 mb-10 max-w-xl leading-relaxed"
+              className="text-sm md:text-base text-zinc-500 mb-8 max-w-xl leading-relaxed"
             >
               {PORTFOLIO.personal.tagline}
             </motion.p>
 
             <motion.div
               custom={5} variants={fadeUp} initial="hidden" animate="visible"
-              className="flex flex-wrap gap-3 mb-10"
+              className="flex flex-wrap gap-3 mb-8"
             >
               <Link
                 href="#projects"
@@ -176,11 +187,12 @@ export function Hero() {
               >
                 Work With Me
               </Link>
+              <ChallengeCTA />
             </motion.div>
 
             <motion.div
               custom={6} variants={fadeUp} initial="hidden" animate="visible"
-              className="flex gap-2"
+              className="flex gap-2 mb-8"
             >
               {PORTFOLIO.social.map((s) => {
                 const Icon = socialIcons[s.icon] ?? Mail
@@ -198,6 +210,10 @@ export function Hero() {
                 )
               })}
             </motion.div>
+
+            <motion.div custom={7} variants={fadeUp} initial="hidden" animate="visible">
+              <StatusWidget />
+            </motion.div>
           </div>
 
           {/* RIGHT: Profile photo */}
@@ -206,10 +222,7 @@ export function Hero() {
             className="hidden lg:flex items-center justify-center"
           >
             <div className="relative float">
-              {/* Glow halo */}
               <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-violet-600/25 via-blue-600/15 to-violet-600/25 blur-2xl" />
-
-              {/* Animated border frame */}
               <div className="relative animated-border rounded-2xl">
                 <div className="relative w-60 h-72 rounded-2xl overflow-hidden">
                   <Image
@@ -223,10 +236,8 @@ export function Hero() {
                 </div>
               </div>
 
-              {/* Floating stat: CGPA */}
               <motion.div
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1, duration: 0.5 }}
                 className="absolute -left-12 top-10 glass rounded-xl px-3 py-2 text-center shadow-lg"
               >
@@ -234,10 +245,8 @@ export function Hero() {
                 <p className="text-[10px] text-zinc-500 mt-0.5">CGPA</p>
               </motion.div>
 
-              {/* Floating stat: Projects */}
               <motion.div
-                initial={{ opacity: 0, x: 16 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.2, duration: 0.5 }}
                 className="absolute -right-12 bottom-14 glass rounded-xl px-3 py-2 text-center shadow-lg"
               >
@@ -245,10 +254,8 @@ export function Hero() {
                 <p className="text-[10px] text-zinc-500 mt-0.5">Products</p>
               </motion.div>
 
-              {/* Floating tag: stack */}
               <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.4, duration: 0.5 }}
                 className="absolute -bottom-4 left-1/2 -translate-x-1/2 glass rounded-xl px-4 py-1.5 whitespace-nowrap shadow-lg"
               >
@@ -264,8 +271,7 @@ export function Hero() {
 
       {/* Scroll cue */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 1.8, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
       >
