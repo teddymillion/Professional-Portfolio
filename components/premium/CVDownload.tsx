@@ -55,7 +55,7 @@ export function CVDownload() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 6, scale: 0.97 }}
             transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute left-0 top-full mt-2 w-64 rounded-xl overflow-hidden z-50"
+            className="absolute left-0 sm:left-0 right-0 sm:right-auto top-full mt-2 w-64 rounded-xl overflow-hidden z-50"
             style={{
               background: 'rgba(9,12,22,0.95)',
               border: '1px solid rgba(255,255,255,0.08)',
