@@ -8,6 +8,7 @@ import Image from 'next/image'
 import { PORTFOLIO } from '@/lib/constants'
 import { StatusWidget } from '@/components/premium/StatusWidget'
 import { ChallengeCTA } from '@/components/premium/ChallengeCTA'
+import { CVDownload } from '@/components/premium/CVDownload'
 
 const socialIcons: Record<string, React.ElementType> = {
   github: Github,
@@ -188,6 +189,7 @@ export function Hero() {
                 Work With Me
               </Link>
               <ChallengeCTA />
+              <CVDownload />
             </motion.div>
 
             <motion.div
