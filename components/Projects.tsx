@@ -130,7 +130,7 @@ export function Projects() {
                   </div>
 
                   {/* Right: case study */}
-                  <div className="p-5 flex flex-col gap-3">
+                  <div className="p-4 md:p-5 flex flex-col gap-3">
                     <div className="rounded-lg bg-red-500/5 border border-red-500/10 p-3">
                       <p className="text-[10px] font-semibold text-red-400 uppercase tracking-widest mb-1">Problem</p>
                       <p className="text-xs text-zinc-400 leading-relaxed">{project.problem}</p>
@@ -170,7 +170,7 @@ export function Projects() {
                           <Brain className="w-3.5 h-3.5 text-violet-400" />
                           <span className="text-[10px] font-bold text-violet-400 uppercase tracking-widest">Decision Log</span>
                         </div>
-                        <div className="grid sm:grid-cols-3 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                           <div>
                             <p className="text-[9px] font-semibold text-zinc-600 uppercase tracking-widest mb-1">Tech Choice</p>
                             <p className="text-xs text-zinc-400 leading-relaxed">{dl.techChoice}</p>

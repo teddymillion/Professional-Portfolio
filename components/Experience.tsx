@@ -62,13 +62,13 @@ export function Experience() {
                     <span className="text-violet-400 font-bold text-sm">{exp.company.charAt(0)}</span>
                   )}
                 </div>
-                <div className="flex-1">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <h3 className="text-xl font-bold text-white">{exp.role}</h3>
-                    <span className="text-xs text-zinc-500 glass px-3 py-1 rounded-full">{exp.duration}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-start justify-between gap-2 mb-0.5">
+                      <h3 className="text-base md:text-lg font-bold text-white leading-tight">{exp.role}</h3>
+                      <span className="text-xs text-zinc-500 glass px-3 py-1 rounded-full shrink-0">{exp.duration}</span>
+                    </div>
+                    <p className="text-violet-400 font-medium text-sm">{exp.company}</p>
                   </div>
-                  <p className="text-violet-400 font-medium mt-0.5">{exp.company}</p>
-                </div>
               </div>
 
               <p className="text-zinc-400 mb-6 leading-relaxed">{exp.description}</p>

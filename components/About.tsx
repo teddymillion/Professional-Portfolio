@@ -36,7 +36,7 @@ export function About() {
           variants={fadeUp}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="flex items-center gap-3 mb-12"
+          className="flex items-center gap-3 mb-6 md:mb-12"
         >
           <span className="text-xs font-semibold tracking-[0.2em] uppercase text-violet-400">About</span>
           <div className="h-px flex-1 max-w-[60px] bg-violet-500/30" />
