@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'react-hot-toast'
+import { ThinkingModeProvider } from '@/components/premium/ThinkingModeProvider'
+import { AiChat } from '@/features/ai-chat/AiChat'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
@@ -27,7 +29,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" suppressHydrationWarning className="dark">
       <body className={`${inter.variable} font-sans antialiased bg-[#080810] text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
-          {children}
+          <ThinkingModeProvider>
+            {children}
+            <AiChat />
+          </ThinkingModeProvider>
           <Analytics />
           <Toaster
             position="bottom-right"
