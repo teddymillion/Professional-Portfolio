@@ -1,16 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: parseInt(process.env.EMAIL_PORT || '587', 10),
-  secure: process.env.EMAIL_SECURE === 'true',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-})
-
 export async function POST(request: NextRequest) {
   try {
     const { name, email, message } = await request.json()
@@ -19,8 +9,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS?.replace(/\s/g, ''),
+      },
+    })
+
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       replyTo: email,
       subject: `New Message from ${name}`,
@@ -33,9 +31,9 @@ export async function POST(request: NextRequest) {
       `,
     })
 
-    return NextResponse.json({ success: true, message: 'Email sent successfully!' }, { status: 200 })
-  } catch (error) {
-    console.error('Contact form error:', error)
-    return NextResponse.json({ error: 'Failed to send email' }, { status: 500 })
+    return NextResponse.json({ success: true, message: "Message sent! I'll get back to you soon." }, { status: 200 })
+  } catch (error: any) {
+    console.error('Contact form error:', error?.message ?? error)
+    return NextResponse.json({ error: 'Failed to send email. Please try again.' }, { status: 500 })
   }
 }

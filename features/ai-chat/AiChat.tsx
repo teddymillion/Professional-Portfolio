@@ -55,7 +55,9 @@ export function AiChat() {
       if (!res.ok || data.error) {
         const msg = data.error === 'quota'
           ? 'I\'m at my request limit right now. Try again in a minute or email tedrosmilion19@gmail.com'
-          : 'I\'m temporarily unavailable. Reach out directly at tedrosmilion19@gmail.com'
+          : data.error === 'AI not configured'
+          ? 'AI chat is not configured yet. Email tedrosmilion19@gmail.com'
+          : 'I\'m temporarily unavailable. Reach out at tedrosmilion19@gmail.com'
         throw new Error(msg)
       }
 
