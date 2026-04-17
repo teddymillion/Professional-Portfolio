@@ -83,7 +83,7 @@ export function AiChat() {
       {/* Floating trigger */}
       <motion.button
         onClick={() => setOpen(v => !v)}
-        className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-2xl overflow-hidden transition-all duration-300 group"
+        className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-12 h-12 rounded-2xl overflow-hidden transition-all duration-300 group"
         style={{
           boxShadow: open
             ? '0 0 0 2px rgba(109,94,246,0.5), 0 0 32px rgba(109,94,246,0.4)'
@@ -129,7 +129,7 @@ export function AiChat() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 8 }}
             transition={{ delay: 1.5, duration: 0.3 }}
-            className="fixed bottom-7 right-[68px] z-50 pointer-events-none"
+            className="fixed bottom-7 right-[68px] z-50 pointer-events-none hidden sm:block"
           >
             <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl whitespace-nowrap"
               style={{
@@ -160,7 +160,7 @@ export function AiChat() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.97 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed right-6 z-50 w-[340px] md:w-[370px] flex flex-col overflow-hidden"
+            className="fixed right-4 md:right-6 z-50 w-[calc(100vw-32px)] sm:w-[340px] md:w-[370px] flex flex-col overflow-hidden"
             style={{
               bottom: '72px',
               maxHeight: '500px',
