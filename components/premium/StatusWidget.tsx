@@ -14,7 +14,7 @@ const STATUS_ITEMS = [
     dot: 'bg-blue-400',
     pulse: false,
     label: 'Experimenting',
-    value: 'AI notification engine with behavioral triggers',
+    value: 'Stealth mode — something new in progress',
     color: 'text-blue-400',
   },
   {
