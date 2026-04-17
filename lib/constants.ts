@@ -181,7 +181,8 @@ export const PORTFOLIO = {
       technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'AI Integration'],
       link: 'https://github.com/teddymillion',
       demo: 'https://ai-powered-money-management-system.vercel.app',
-      image: '/projects/ai-tagger.jpg',
+      image: '/projects/simuni wallet.mp4',
+      mediaType: 'video',
       impact: 'Live product — AI-native financial tool built for the Ethiopian market',
       featured: true,
       decisionLog: {
@@ -205,7 +206,7 @@ export const PORTFOLIO = {
       technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Google Gemini API'],
       link: 'https://github.com/teddymillion/ai-text-image-tagger',
       demo: 'https://ai-text-image-tagger.vercel.app/',
-      image: '/projects/ai-tagger.jpg',
+      image: '/ai image tagger.png',
       impact: 'Deployed and live — reduces content tagging time by 95%',
       decisionLog: {
         techChoice: 'Chose Gemini over GPT-4V — better cost-per-token at scale and stronger multimodal performance for image tagging.',
@@ -228,7 +229,7 @@ export const PORTFOLIO = {
       technologies: ['JavaScript', 'Node.js', 'OpenAI API', 'REST APIs'],
       link: 'https://github.com/teddymillion',
       demo: 'https://ai-resume-analyzer-bice-two.vercel.app/landing',
-      image: '/projects/resume analyzer.jpg',
+      image: '/ai resume analyzer.png',
       impact: 'Live — delivers structured AI feedback in under 10 seconds',
       decisionLog: {
         techChoice: 'Prompt engineering over fine-tuning — faster iteration cycle, zero training cost, easier to update.',
