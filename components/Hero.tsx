@@ -127,20 +127,39 @@ export function Hero() {
         }}
       />
 
-      <div className="relative z-10 max-w-6xl w-full mx-auto px-4 md:px-8 py-24">
-        <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-center">
+      <div className="relative z-10 max-w-6xl w-full mx-auto px-4 md:px-8 py-16 md:py-24">
+        <div className="grid lg:grid-cols-[1fr_auto] gap-8 md:gap-12 items-center">
 
           {/* LEFT */}
           <div>
             <motion.div
               custom={0} variants={fadeUp} initial="hidden" animate="visible"
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-zinc-400 mb-6"
+              className="hidden lg:inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-zinc-400 mb-6"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               Available for collaboration
               <span className="text-zinc-600">·</span>
               <MapPin className="w-3 h-3" />
               {PORTFOLIO.personal.location}
+            </motion.div>
+
+            {/* Mobile profile photo */}
+            <motion.div
+              custom={0} variants={fadeUp} initial="hidden" animate="visible"
+              className="flex lg:hidden items-center gap-4 mb-6"
+            >
+              <div className="relative w-16 h-16 rounded-2xl overflow-hidden ring-1 ring-violet-500/30 shrink-0"
+                style={{ boxShadow: '0 0 20px rgba(109,94,246,0.25)' }}>
+                <Image src="/tewodros-profile.jpg" alt="Tewodros Million" fill className="object-cover object-top" priority />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-white">{PORTFOLIO.personal.name}</p>
+                <p className="text-xs text-violet-400 mt-0.5">{PORTFOLIO.personal.title}</p>
+                <div className="flex items-center gap-1.5 mt-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[10px] text-zinc-500">Available · {PORTFOLIO.personal.location}</span>
+                </div>
+              </div>
             </motion.div>
 
             <motion.p
@@ -173,18 +192,18 @@ export function Hero() {
 
             <motion.div
               custom={5} variants={fadeUp} initial="hidden" animate="visible"
-              className="flex flex-wrap gap-3 mb-8"
+              className="flex flex-wrap gap-2 mb-8"
             >
               <Link
                 href="#projects"
-                className="group inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_24px_rgba(139,92,246,0.45)] hover:-translate-y-px"
+                className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_24px_rgba(139,92,246,0.45)] hover:-translate-y-px"
               >
                 View Projects
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link
                 href="#contact"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg glass text-zinc-300 text-sm font-semibold hover:bg-white/6 hover:-translate-y-px transition-all duration-300"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg glass text-zinc-300 text-sm font-semibold hover:bg-white/6 hover:-translate-y-px transition-all duration-300"
               >
                 Work With Me
               </Link>
