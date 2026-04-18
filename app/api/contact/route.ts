@@ -2,161 +2,140 @@ import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
 function buildEmailHtml(name: string, email: string, message: string, isChallenge: boolean) {
-  const label = isChallenge ? 'Challenge' : 'Message'
-  const accentColor = '#6D5EF6'
-  const bgDark = '#070A12'
-  const bgCard = '#0B0F1A'
-  const borderColor = '#1a1f35'
-  const textPrimary = '#f0f0f5'
-  const textSecondary = '#8b8fa8'
+  const accent = '#6D5EF6'
+  const accentLight = '#ede9fe'
+  const accentDark = '#4f46e5'
 
   return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>New ${label} — Portfolio</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Portfolio Contact</title>
 </head>
-<body style="margin:0;padding:0;background-color:${bgDark};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:${bgDark};padding:40px 16px;">
+<body style="margin:0;padding:0;background-color:#f4f4f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f4f8;padding:40px 16px;">
     <tr>
       <td align="center">
-        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:540px;">
 
-          <!-- Header -->
+          <!-- Logo -->
           <tr>
-            <td style="padding-bottom:24px;" align="center">
-              <table cellpadding="0" cellspacing="0">
+            <td align="center" style="padding-bottom:20px;">
+              <table cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                  <td style="background:linear-gradient(135deg,#6D5EF6,#4f46e5);border-radius:12px;padding:1px;">
-                    <table cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td style="background:${bgDark};border-radius:11px;padding:10px 20px;">
-                          <span style="font-size:16px;font-weight:700;color:${textPrimary};letter-spacing:0.05em;">TM<span style="color:${accentColor};">.</span></span>
-                        </td>
-                      </tr>
-                    </table>
+                  <td style="background-color:#1a1040;border-radius:10px;padding:10px 20px;">
+                    <span style="font-size:16px;font-weight:700;color:#ffffff;letter-spacing:2px;">TM<span style="color:${accent};">.</span></span>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- Card -->
+          <!-- Main card -->
           <tr>
-            <td style="background-color:${bgCard};border-radius:16px;border:1px solid ${borderColor};overflow:hidden;">
+            <td style="background-color:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(109,94,246,0.12);">
 
-              <!-- Top accent bar -->
-              <tr>
-                <td style="height:3px;background:linear-gradient(90deg,#6D5EF6,#2DE2E6,#6D5EF6);"></td>
-              </tr>
+              <!-- Top gradient bar -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="height:4px;background:linear-gradient(90deg,${accent},#2DE2E6,${accent});font-size:0;line-height:0;">&nbsp;</td>
+                </tr>
+              </table>
 
-              <!-- Card body -->
-              <tr>
-                <td style="padding:32px;">
+              <!-- Body -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="padding:32px 32px 24px;">
 
-                  <!-- Badge -->
-                  <table cellpadding="0" cellspacing="0" style="margin-bottom:20px;">
-                    <tr>
-                      <td style="background:rgba(109,94,246,0.15);border:1px solid rgba(109,94,246,0.3);border-radius:20px;padding:4px 12px;">
-                        <span style="font-size:11px;font-weight:600;color:${accentColor};letter-spacing:0.12em;text-transform:uppercase;">
-                          ${isChallenge ? '⚡ New Challenge' : '✉️ New Message'}
-                        </span>
-                      </td>
-                    </tr>
-                  </table>
+                    <!-- Badge -->
+                    <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+                      <tr>
+                        <td style="background-color:${accentLight};border-radius:20px;padding:5px 14px;">
+                          <span style="font-size:11px;font-weight:700;color:${accent};letter-spacing:1px;text-transform:uppercase;">
+                            ${isChallenge ? '⚡ New Challenge' : '✉️ New Message'}
+                          </span>
+                        </td>
+                      </tr>
+                    </table>
 
-                  <!-- Title -->
-                  <h1 style="margin:0 0 6px;font-size:22px;font-weight:700;color:${textPrimary};line-height:1.3;">
-                    ${isChallenge ? `${name} challenged you` : `${name} reached out`}
-                  </h1>
-                  <p style="margin:0 0 28px;font-size:13px;color:${textSecondary};">
-                    via your portfolio at tewodrosmillion.dev
-                  </p>
+                    <!-- Headline -->
+                    <h1 style="margin:0 0 6px;font-size:22px;font-weight:700;color:#0f0a2e;line-height:1.3;">
+                      ${isChallenge ? `${name} challenged you` : `${name} reached out`}
+                    </h1>
+                    <p style="margin:0 0 24px;font-size:13px;color:#6b7280;">
+                      via your portfolio contact form
+                    </p>
 
-                  <!-- Divider -->
-                  <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
-                    <tr><td style="height:1px;background:${borderColor};"></td></tr>
-                  </table>
+                    <!-- Divider -->
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
+                      <tr><td style="height:1px;background-color:#e5e7eb;font-size:0;line-height:0;">&nbsp;</td></tr>
+                    </table>
 
-                  <!-- Sender info -->
-                  <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
-                    <tr>
-                      <td style="padding:16px;background:rgba(255,255,255,0.03);border:1px solid ${borderColor};border-radius:10px;">
-                        <table width="100%" cellpadding="0" cellspacing="0">
-                          <tr>
-                            <td style="padding-bottom:10px;">
-                              <span style="font-size:10px;font-weight:600;color:${textSecondary};letter-spacing:0.15em;text-transform:uppercase;">From</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span style="font-size:15px;font-weight:600;color:${textPrimary};">${name}</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td style="padding-top:4px;">
-                              <a href="mailto:${email}" style="font-size:13px;color:${accentColor};text-decoration:none;">${email}</a>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
+                    <!-- Sender info -->
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
+                      <tr>
+                        <td style="background-color:#f9f8ff;border:1px solid #e0d9ff;border-radius:10px;padding:16px;">
+                          <p style="margin:0 0 4px;font-size:10px;font-weight:700;color:#9ca3af;letter-spacing:1.5px;text-transform:uppercase;">From</p>
+                          <p style="margin:0 0 4px;font-size:15px;font-weight:700;color:#0f0a2e;">${name}</p>
+                          <a href="mailto:${email}" style="font-size:13px;color:${accent};text-decoration:none;">${email}</a>
+                        </td>
+                      </tr>
+                    </table>
 
-                  <!-- Message -->
-                  <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
-                    <tr>
-                      <td>
-                        <p style="margin:0 0 10px;font-size:10px;font-weight:600;color:${textSecondary};letter-spacing:0.15em;text-transform:uppercase;">
-                          ${isChallenge ? 'The Challenge' : 'Message'}
-                        </p>
-                        <table width="100%" cellpadding="0" cellspacing="0">
-                          <tr>
-                            <td style="border-left:3px solid ${accentColor};padding:14px 16px;background:rgba(109,94,246,0.06);border-radius:0 8px 8px 0;">
-                              <p style="margin:0;font-size:14px;color:${textPrimary};line-height:1.7;">
-                                ${message.replace(/\n/g, '<br/>')}
-                              </p>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
+                    <!-- Message label -->
+                    <p style="margin:0 0 10px;font-size:10px;font-weight:700;color:#9ca3af;letter-spacing:1.5px;text-transform:uppercase;">
+                      ${isChallenge ? 'The Challenge' : 'Message'}
+                    </p>
 
-                  <!-- CTA -->
-                  <table cellpadding="0" cellspacing="0">
-                    <tr>
-                      <td style="background:linear-gradient(135deg,#6D5EF6,#4f46e5);border-radius:10px;padding:1px;">
-                        <table cellpadding="0" cellspacing="0">
-                          <tr>
-                            <td style="border-radius:9px;overflow:hidden;">
-                              <a href="mailto:${email}?subject=Re: Your message to Tewodros Million"
-                                style="display:inline-block;padding:12px 24px;background:linear-gradient(135deg,#6D5EF6,#4f46e5);color:#ffffff;font-size:13px;font-weight:600;text-decoration:none;border-radius:9px;">
-                                Reply to ${name} →
-                              </a>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
+                    <!-- Message block -->
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
+                      <tr>
+                        <td style="border-left:4px solid ${accent};background-color:#f9f8ff;border-radius:0 10px 10px 0;padding:16px 18px;">
+                          <p style="margin:0;font-size:14px;color:#374151;line-height:1.75;">
+                            ${message.replace(/\n/g, '<br/>')}
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
 
-                </td>
-              </tr>
+                    <!-- CTA Button -->
+                    <table cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td style="border-radius:10px;background-color:${accent};">
+                          <a href="mailto:${email}?subject=Re: Your message to Tewodros Million"
+                            style="display:inline-block;padding:13px 26px;background-color:${accent};color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;border-radius:10px;letter-spacing:0.3px;">
+                            Reply to ${name} &rarr;
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Card footer -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="background-color:#f9f8ff;border-top:1px solid #e5e7eb;padding:16px 32px;">
+                    <p style="margin:0;font-size:11px;color:#9ca3af;text-align:center;">
+                      Tewodros Million &middot; Software Engineer &amp; Builder &middot; Addis Ababa, Ethiopia
+                    </p>
+                  </td>
+                </tr>
+              </table>
 
             </td>
           </tr>
 
-          <!-- Footer -->
+          <!-- Bottom note -->
           <tr>
-            <td style="padding-top:24px;" align="center">
-              <p style="margin:0;font-size:11px;color:rgba(139,143,168,0.5);">
-                Tewodros Million · Software Engineer & Builder · Addis Ababa, Ethiopia
-              </p>
-              <p style="margin:6px 0 0;font-size:11px;color:rgba(139,143,168,0.3);">
-                This email was sent from your portfolio contact form.
+            <td style="padding-top:20px;" align="center">
+              <p style="margin:0;font-size:11px;color:#9ca3af;">
+                Sent from your portfolio contact form
               </p>
             </td>
           </tr>
@@ -165,6 +144,7 @@ function buildEmailHtml(name: string, email: string, message: string, isChalleng
       </td>
     </tr>
   </table>
+
 </body>
 </html>
   `.trim()
@@ -180,7 +160,7 @@ export async function POST(request: NextRequest) {
 
     const isChallenge = name === 'Challenge'
     const subjectLine = isChallenge
-      ? `⚡ New Challenge from your portfolio`
+      ? `⚡ New Challenge — Portfolio`
       : `✉️ New message from ${name} — Portfolio`
 
     const transporter = nodemailer.createTransport({
